@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#009fe3">
+  <meta name="description" content="PES-Reward turns frozen VLM evidence into signed events, persistent count state, and reward for continual robot manipulation.">
+  <title>PES-Reward · Persistent Event–State Reward</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="compact.css">
+  <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/noto-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="visual.css?v=academic">
+  <link rel="stylesheet" href="gallery.css?v=multiview">
+  <script src="demo-data.js?v=multiview" defer></script>
+  <script src="synced-plot.js?v=live-curves" defer></script>
+  <script src="app.js?v=multiview" defer></script>
+</head>
+<body>
+  <a class="skip" href="#method">Skip to content</a>
+  <div class="scroll-meter" aria-hidden="true"></div>
+  <header class="nav">
+    <a href="#" class="wordmark" aria-label="PES-Reward home"><img src="assets/mark.svg" alt="" width="28" height="28">PES<span>Reward</span><i></i></a>
+    <nav aria-label="Main navigation"><a href="#method">Method</a><a href="#overview">Overview</a><a href="#demos">Demos</a><a href="#results">Results</a></nav>
+    <a class="nav-cta" href="#demos">Watch the demos <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title"><span class="project-title">PES-Reward</span><span class="paper-title">Persistent Event–State Reward Estimation for Continual Robot Manipulation</span></h1>
+        <div class="publication-links" role="group" aria-label="Project resources">
+          <button class="resource-link pending" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><span>Code</span><small>Coming soon</small></button>
+          <button class="resource-link pending" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg><span>Dataset</span><small>Coming soon</small></button>
+          <a class="resource-link demo-link" href="#demos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m8 4 12 8-12 8z"/></svg><span>Demos</span></a>
+        </div>
+        <div class="hero-tags"><span>Frozen VLM</span><span>Training-free</span><span>Persistent state</span></div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-screen">
+          <video id="hero-video" muted loop playsinline preload="metadata" poster="assets/hero.jpg" aria-label="Robot placing fruit into a basket, synchronized with evidence and state curves"><source src="assets/hero.mp4" type="video/mp4"></video>
+          <div class="video-topline"><span><i class="status-dot"></i> REAL ROBOT · HEAD CAMERA</span><button id="hero-toggle" class="glass-button" aria-label="Play background video">Play</button></div>
+          <span class="hero-excerpt">Repeated placement · 4–28 s excerpt</span>
+        </div>
+        <div class="hero-trends">
+          <div class="trend-heading"><div><p class="eyebrow">EVIDENCE → STATE</p><h2>Progress stays.</h2></div><div class="live-count"><strong id="hero-count">0</strong><span>State count</span></div></div>
+          <div id="hero-plot" class="synced-plot" aria-label="Evidence and state curves synchronized with the video"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="section method">
+      <div class="section-heading"><p class="eyebrow">THE METHOD</p><h2>From logits to <em>lasting state.</em></h2></div>
+      <div class="pipeline">
+        <article><span class="step">01</span><h3>Read evidence</h3><p>Frozen VLM logits → semantic factors.</p></article>
+        <article><span class="step">02</span><h3>Link the attempt</h3><p>Fuse views with dual-reference memory.</p></article>
+        <article><span class="step">03</span><h3>Commit once</h3><p>Assign an event ID and signed change.</p></article>
+        <article><span class="step">04</span><h3>Maintain state</h3><p>Replay the ledger. Reward state changes.</p></article>
+      </div>
+      <figure class="method-figure">
+        <a href="assets/method.png" target="_blank" rel="noopener" aria-label="Open full-resolution method figure"><img src="assets/method.png" alt="Frozen VLM factors, dual-reference attempt memory, signed event commitment, and persistent state and reward." loading="lazy" width="2400" height="1095"></a>
+        <figcaption>Full pipeline · click to enlarge <b aria-hidden="true">↗</b></figcaption>
+      </figure>
+    </section>
+
+    <section id="overview" class="section overview">
+      <div class="section-heading"><p class="eyebrow">THE IDEA</p><h2>Count effects. <em>Remember progress.</em></h2></div>
+      <div class="problem-grid">
+        <article><span class="small-number">01 / REPEAT</span><h3>One effect, one event.</h3><p>Associate observations. Count each accepted operation once.</p></article>
+        <article><span class="small-number">02 / OCCLUDE</span><h3>Keep what was established.</h3><p>Preserve the count when the target leaves view.</p></article>
+        <article><span class="small-number">03 / REVISE</span><h3>Track changes both ways.</h3><p>Record removals. Correct mistaken events.</p></article>
+      </div>
+    </section>
+
+    <section id="demos" class="section demos">
+      <div class="section-heading split"><div><p class="eyebrow">REAL-ROBOT DEMOS</p><h2>Watch the state <em>change.</em></h2></div></div>
+      <div class="demo-tabs" role="tablist" aria-label="Demonstration scenario">
+        <button id="tab-repetition" role="tab" aria-selected="true" aria-controls="demo-panel" data-demo="repetition" tabindex="0">Repeated placement</button>
+        <button id="tab-occlusion" role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="occlusion" tabindex="-1">Occlusion</button>
+        <button id="tab-removal" role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="removal" tabindex="-1">AgiBot tasks</button>
+      </div>
+      <div class="demo-stage" id="demo-panel" role="tabpanel" aria-labelledby="tab-repetition">
+        <div class="demo-player">
+          <div id="camera-labels" class="camera-labels" hidden><span>Head camera</span><span>Right wrist camera</span></div>
+          <div class="demo-screen"><video id="demo-video" controls playsinline preload="metadata" poster="assets/demos/fruit-01.jpg" aria-label="Repeated placement result video"><source src="assets/demos/fruit-01.mp4" type="video/mp4"></video><div class="video-count">State count <strong id="demo-count">0</strong></div></div>
+          <div id="demo-plot" class="synced-plot" aria-label="Synchronized event evidence, state progress, and accepted events"></div>
+        </div>
+        <aside class="demo-aside">
+          <span class="eyebrow" id="demo-kicker">REPEATED PLACEMENT</span>
+          <h3 id="demo-title">Count each placement once.</h3>
+          <p id="demo-description">Repeated fruit placements into a basket. Scores fluctuate; accepted events advance the count.</p>
+          <div class="case-heading"><span id="case-position">Case 1 / 3</span><button class="replay" id="replay-demo">↺ Replay</button></div>
+          <div id="demo-cases" class="demo-cases" role="group" aria-label="Choose a video in this category"></div>
+          <details class="video-notes"><summary>About these demos</summary><p>Selected archived results, synchronized to video time. Event evidence is the archived event_prob score, not a calibrated probability. Curves use recorded samples and the archive’s state-progress convention. The AgiBot box case is an offline replay.</p></details>
+        </aside>
+      </div>
+    </section>
+
+    <section id="ledger" class="ledger-section">
+      <details class="ledger-details">
+        <summary><span>Try the event memory <small>Interactive illustration</small></span><span class="ledger-expand" aria-hidden="true">+</span></summary>
+        <div class="section ledger-layout">
+          <div><h2>One event. <em>One update.</em></h2><p class="ledger-intro">Add, replay, occlude, or reverse an event.</p><div class="ledger-controls"><button data-action="add">+ Add an object</button><button data-action="occlude">◌ Occlude the scene</button><button data-action="duplicate">↻ Replay latest ID</button><button data-action="remove">− Remove an object</button><button data-action="invalidate">↶ Invalidate latest ADD</button><button data-action="reset">Reset example</button></div></div>
+          <div class="ledger-card"><div class="ledger-card-top"><span class="mono">PERSISTENT STATE</span><span id="visibility">● Visible</span></div><div class="count-display"><strong id="count">0</strong><span>objects counted</span><div id="objects" aria-hidden="true"></div></div><div class="ledger-table-wrap"><table class="ledger-table"><thead><tr><th>Event ID</th><th>Effect</th><th>Status</th></tr></thead><tbody id="ledger-rows"><tr><td colspan="3">No committed events yet.</td></tr></tbody></table></div><p id="ledger-message" role="status" aria-live="polite">Start with an empty target. Add the first object.</p></div>
+        </div>
+      </details>
+    </section>
+
+    <section id="results" class="section results">
+      <div class="section-heading"><p class="eyebrow">RESULTS</p><h2>Measured on <em>real robots.</em></h2></div>
+      <div class="stats"><div><strong>232</strong><span>videos</span></div><div><strong>921</strong><span>annotated events</span></div><div><strong>0.655</strong><span>macro F1 @ 1 s ↑</span></div><div><strong>0.569</strong><span>count MAE ↓</span></div></div>
+      <div class="results-body">
+        <div class="results-insight"><h3>53.3% lower <em>count error.</em></h3><p>Compared with Window-RoboMeter, the strongest rolling-window baseline by macro F1.</p></div>
+        <div class="table-scroll"><table class="results-table"><caption>Rolling-window comparison · 921 GT events</caption><thead><tr><th>Method</th><th>F1@1s ↑</th><th>MAE ↓</th></tr></thead><tbody><tr><td>Window-TOPReward</td><td>0.253</td><td>1.739</td></tr><tr><td>Window-GVL</td><td>0.322</td><td>1.528</td></tr><tr><td>Window-RoboMeter</td><td>0.608</td><td>1.218</td></tr><tr class="ours"><td>PES-Reward</td><td>0.655</td><td>0.569</td></tr></tbody></table></div>
+      </div>
+    </section>
+  </main>
+  <footer><a class="wordmark" href="#">PES<span>Reward</span><i></i></a><p>Persistent Event–State Reward for Continual Manipulation</p><a href="#">Back to top ↑</a></footer>
+</body>
+</html>

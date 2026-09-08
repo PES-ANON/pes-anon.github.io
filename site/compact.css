@@ -1,0 +1,245 @@
+/* Shorter reading path, larger type; retains the existing blue/white identity. */
+:root { --max: 1140px; }
+body { font-size: 17px; }
+.eyebrow, .small-number { font-size: 12px; letter-spacing: .1em; }
+.nav { height: 72px; }
+.nav nav { font-size: 15px; gap: 28px; }
+.nav-cta, .text-link { font-size: 14px; }
+.hero { min-height: 0; padding: 34px max(4vw, 24px); gap: 32px; }
+.hero-copy { padding: 18px 0; }
+.hero h1 { font-size: clamp(52px, 5.2vw, 74px); margin: 20px 0 22px; }
+.paper-title { font-size: 20px; line-height: 1.5; max-width: 540px; }
+.hero-actions { margin-top: 24px; }
+.button { font-size: 16px; padding: 12px 22px; }
+.hero-tags { margin-top: 24px; font-size: 13px; gap: 15px; }
+.hero-visual { min-height: 450px; max-height: 520px; }
+.hero-overlay { bottom: 30px; }
+.hero-overlay p { font-size: 34px; }
+.video-topline { font-size: 10px; }
+.glass-button { font-size: 12px; }
+.section { padding: 48px 36px; }
+.section-heading h2, .ledger-layout h2 { font-size: clamp(32px, 3.4vw, 45px); line-height: 1.12; margin-top: 12px; }
+.section-heading.split { margin-bottom: 22px; }
+.overview { display: block; padding-top: 32px; padding-bottom: 36px; }
+.overview .section-heading h2 { font-size: 32px; }
+.problem-grid { margin-top: 22px; padding-top: 20px; }
+.problem-grid article { padding: 0 24px; }
+.problem-grid h3 { font-size: 20px; margin: 9px 0 8px; }
+.problem-grid p { font-size: 16px; line-height: 1.5; }
+.demos { padding: 40px max(36px, calc((100vw - var(--max)) / 2)); }
+.demo-tabs { margin-bottom: 18px; }
+.demo-tabs button { font-size: 16px; padding: 10px 24px; }
+.demo-stage { grid-template-columns: minmax(0, 740px) minmax(250px, 1fr); }
+.demo-screen video { width: 100%; max-height: 590px; }
+.demo-aside { display: flex; padding: 25px; }
+.demo-aside h3 { font-size: 29px; margin: 15px 0; }
+.demo-aside > p { font-size: 17px; line-height: 1.6; }
+.legend { font-size: 13px; gap: 9px 14px; margin-top: 22px; }
+.replay { font-size: 15px; margin-top: 20px; }
+.video-notes { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.video-notes summary { cursor: pointer; }
+.video-notes p { margin-top: 10px; line-height: 1.6; }
+.pipeline { margin: 24px 0; gap: 0; }
+.pipeline article { padding-right: 20px; }
+.step { font-size: 12px; }
+.pipeline h3 { font-size: 20px; margin-top: 12px; }
+.pipeline p { font-size: 16px; line-height: 1.5; min-height: 0; margin-top: 7px; }
+.method-figure a { padding: 20px 15px; }
+.method-figure figcaption { font-size: 13px; padding: 10px 20px; }
+.camera-details, .technical, .evaluation-notes { border-bottom: 1px solid var(--line); margin-top: 12px; font-size: 16px; }
+.camera-details summary, .technical summary, .evaluation-notes summary { padding: 13px 0; color: var(--blue-deep); cursor: pointer; }
+.camera-details summary span { float: right; }
+.paired-views { display: block; margin: 0 auto; padding-bottom: 18px; max-width: 850px; }
+.paired-views > p { font-size: 16px; line-height: 1.5; margin: 0 0 15px; color: var(--muted); }
+.pair-labels { font-size: 12px; }
+.technical > div { font-size: 16px; line-height: 1.65; gap: 26px; padding: 4px 0 20px; }
+.ledger-details { max-width: calc(var(--max) + 72px); margin: auto; }
+.ledger-details > summary { padding: 25px 36px; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 23px; font-weight: 500; cursor: pointer; list-style: none; }
+.ledger-details > summary::-webkit-details-marker { display: none; }
+.ledger-details summary small { font-size: 14px; font-weight: 400; color: #96c7e3; margin-left: 18px; }
+.ledger-expand { font-size: 30px; color: #6ad0fa; transition: transform .2s; }
+.ledger-details[open] .ledger-expand { transform: rotate(45deg); }
+.ledger-layout { padding-top: 10px; padding-bottom: 35px; gap: 45px; }
+.ledger-layout h2 { font-size: 32px; margin-top: 0; }
+.ledger-intro { font-size: 17px; margin: 14px 0; }
+.ledger-controls { margin-top: 20px; max-width: none; gap: 10px; }
+.ledger-controls button { font-size: 14px; padding: 11px 13px; }
+.ledger-card { padding: 22px; }
+.ledger-card-top, .ledger-card-top .mono { font-size: 12px; }
+.count-display { min-height: 110px; padding: 18px 0; }
+.count-display strong { font-size: 62px; }
+.count-display > span { font-size: 15px; }
+.ledger-table { font-size: 14px; }
+.ledger-table th { font-size: 12px; }
+.ledger-table-wrap { min-height: 120px; max-height: 180px; margin-top: 12px; }
+#ledger-message { font-size: 14px; padding-top: 14px; }
+.stats { padding: 20px 0; margin: 24px 0 28px; }
+.stats strong { font-size: 48px; }
+.stats span { font-size: 15px; margin-top: 5px; }
+.results-body { grid-template-columns: .8fr 1.3fr; gap: 45px; align-items: center; }
+.results-insight h3 { font-size: 32px; margin: 0 0 12px; }
+.results-insight > p { font-size: 16px; line-height: 1.55; }
+.results-table { font-size: 16px; }
+.results-table caption { font-size: 13px; padding-bottom: 10px; }
+.results-table th { font-size: 14px; }
+.results-table td { padding: 12px; }
+.evaluation-notes { font-size: 14px; margin-top: 22px; }
+.evaluation-notes summary { padding: 10px 0; }
+.evaluation-notes > p { padding-bottom: 16px; font-size: 15px; color: var(--muted); }
+footer { padding: 23px max(4vw, 24px); border-top: 1px solid var(--line); font-size: 13px; }
+footer p { max-width: 450px; }
+@media (max-width: 1100px) {
+  .hero { gap: 24px; }
+  .hero-visual { min-height: 450px; }
+  .hero-tags { gap: 11px; font-size: 12px; }
+  .paper-title { font-size: 19px; }
+  .demo-stage { grid-template-columns: minmax(0, 1fr) 275px; }
+  .demo-aside { padding: 22px; }
+  .demo-aside h3 { font-size: 25px; }
+  .demo-aside > p { font-size: 16px; }
+  .pipeline { grid-template-columns: repeat(4, 1fr); }
+  .pipeline h3 { font-size: 18px; }
+  .pipeline p { font-size: 15px; }
+  .pipeline article:nth-child(2):after { content: '→'; }
+  .ledger-controls { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 800px) {
+  .nav { height: 64px; padding: 0 22px; }
+  .nav nav { font-size: 14px; gap: 20px; }
+  .hero { grid-template-columns: 1fr 1fr; padding: 26px 24px; gap: 22px; }
+  .hero h1 { font-size: 50px; }
+  .hero-visual { height: auto; min-height: 400px; }
+  .hero-copy { padding: 5px 0; }
+  .hero .eyebrow { font-size: 10px; }
+  .paper-title { font-size: 18px; }
+  .hero-actions { flex-wrap: wrap; gap: 14px; }
+  .hero-tags { gap: 8px 12px; margin-top: 20px; }
+  .hero-overlay { left: 20px; bottom: 25px; }
+  .hero-overlay p { font-size: 26px; }
+  .video-topline { left: 15px; right: 15px; font-size: 8px; }
+  .glass-button { font-size: 10px; min-width: 48px; padding: 6px 9px; }
+  .section, .demos { padding: 36px 24px; }
+  .overview { padding-top: 20px; padding-bottom: 30px; }
+  .problem-grid { gap: 20px; }
+  .problem-grid article { padding: 0 16px 0 0; }
+  .problem-grid h3 { font-size: 19px; }
+  .problem-grid p { font-size: 15px; }
+  .section-heading h2 { font-size: 34px; }
+  .section-heading.split { margin-bottom: 20px; }
+  .demo-stage { grid-template-columns: 1fr; }
+  .demo-screen video { max-height: 520px; }
+  .demo-aside { display: grid; grid-template-columns: 1fr 1fr; padding: 20px; gap: 12px 22px; }
+  .demo-aside h3, .demo-aside > p#demo-description, .demo-aside .eyebrow, .legend, .replay { grid-column: auto; grid-row: auto; }
+  .demo-aside .eyebrow { grid-column: 1; }
+  .demo-aside h3 { grid-column: 1; grid-row: 2; margin: 0; }
+  .demo-aside > p#demo-description { grid-column: 2; grid-row: 1/3; }
+  .legend { grid-column: 1/-1; margin: 0; }
+  .replay { grid-column: 1; margin: 0; }
+  .video-notes { grid-column: 2; margin: 0; font-size: 13px; }
+  .demo-tabs { border-radius: 14px; }
+  .demo-tabs button { font-size: 15px; padding: 10px 13px; }
+  .pipeline { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pipeline article { padding-right: 15px; }
+  .pipeline h3 { font-size: 20px; }
+  .pipeline p { font-size: 16px; }
+  .pipeline article:nth-child(2):after { content: none; }
+  .method-figure a { padding: 15px 8px; }
+  .ledger-details > summary { padding: 21px 24px; }
+  .ledger-layout { grid-template-columns: 1fr; gap: 25px; }
+  .ledger-card { max-width: none; }
+  .stats { margin: 22px 0 26px; }
+  .stats strong { font-size: 42px; }
+  .stats span { font-size: 13px; }
+  .results-body { gap: 28px; grid-template-columns: 1fr; }
+  .results-insight h3 { font-size: 28px; }
+  .results-table { font-size: 16px; }
+  .results-table th { font-size: 14px; }
+  footer { padding: 22px 24px; }
+}
+@media (max-width: 600px) {
+  .hero { grid-template-columns: 1fr; padding: 22px 20px 25px; gap: 24px; }
+  .hero h1 { font-size: 56px; margin: 14px 0 18px; }
+  .hero .eyebrow { font-size: 11px; }
+  .hero-visual { height: 245px; min-height: 0; }
+  .hero-overlay { bottom: 20px; }
+  .hero-overlay p { font-size: 27px; }
+  .paper-title { font-size: 19px; max-width: none; }
+  .hero-actions { margin-top: 20px; flex-wrap: nowrap; gap: 20px; }
+  .hero-actions .button { font-size: 15px; padding: 10px 20px; }
+  .text-link { font-size: 14px; }
+  .hero-tags { font-size: 12px; gap: 15px; margin-top: 17px; }
+  .video-topline { font-size: 10px; top: 15px; }
+  .glass-button { font-size: 12px; }
+  .section, .demos { padding: 30px 20px; }
+  .overview .section-heading h2 { font-size: 29px; }
+  .problem-grid { grid-template-columns: 1fr; margin-top: 17px; padding-top: 0; gap: 0; }
+  .problem-grid article, .problem-grid article:first-child, .problem-grid article:last-child { display: block; padding: 14px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .problem-grid .small-number { font-size: 12px; }
+  .problem-grid h3 { font-size: 20px; margin: 5px 0; }
+  .problem-grid p { font-size: 16px; max-width: none; }
+  .section-heading h2 { font-size: 33px; }
+  .eyebrow { font-size: 12px; }
+  .demo-tabs { gap: 2px; padding: 5px; }
+  .demo-tabs button { font-size: 13px; padding: 9px 8px; }
+  .demo-aside { display: flex; gap: 0; padding: 20px; }
+  .demo-aside h3 { font-size: 25px; margin: 10px 0 12px; }
+  .demo-aside > p#demo-description { font-size: 17px; }
+  .legend { margin-top: 15px; font-size: 13px; }
+  .replay { font-size: 15px; margin-top: 15px; }
+  .video-notes { margin-top: 13px; font-size: 14px; }
+  .pipeline { gap: 22px 16px; margin: 22px 0; }
+  .pipeline article { padding-right: 0; }
+  .pipeline h3 { font-size: 19px; }
+  .pipeline p { font-size: 16px; }
+  .step { width: 29px; height: 29px; }
+  .method-figure figcaption { font-size: 13px; padding: 9px 14px; }
+  .camera-details, .technical { font-size: 16px; }
+  .camera-details summary { padding-right: 14px; }
+  .camera-details summary span { display: none; }
+  .pair-labels { font-size: 11px; }
+  .ledger-details > summary { font-size: 20px; padding: 20px; }
+  .ledger-details summary small { display: block; font-size: 13px; margin: 2px 0 0; }
+  .ledger-layout { padding-top: 0; }
+  .ledger-layout h2 { font-size: 28px; }
+  .ledger-controls { gap: 8px; }
+  .ledger-controls button { font-size: 13px; padding: 11px; }
+  .ledger-card { padding: 18px; }
+  .ledger-card-top, .ledger-card-top .mono { font-size: 11px; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 20px 0; padding: 18px 0; }
+  .stats > div:nth-child(odd) { padding-left: 0; }
+  .stats > div:nth-child(even) { border-right: 0; }
+  .stats strong { font-size: 43px; }
+  .stats span { font-size: 14px; }
+  .results-body { gap: 23px; }
+  .results-insight h3 { font-size: 28px; }
+  .results-insight > p { font-size: 16px; }
+  .results-table { font-size: 15px; }
+  .results-table th { font-size: 13px; }
+  .results-table th, .results-table td { padding: 12px 8px; }
+  .results-table caption { font-size: 13px; }
+  .evaluation-notes { font-size: 15px; }
+  footer { padding: 20px; }
+  footer p { font-size: 12px; }
+  footer > a:last-child { font-size: 13px; }
+}
+@media (max-width: 400px) {
+  .nav { padding: 0 16px; }
+  .nav .wordmark img { display: none; }
+  .nav nav { font-size: 12px; gap: 13px; }
+  .hero h1 { font-size: 50px; }
+  .hero .eyebrow { font-size: 10px; }
+}
+@media (max-width: 350px) {
+  .nav .wordmark { font-size: 16px; }
+  .nav nav { font-size: 11px; gap: 11px; }
+  .hero { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 46px; }
+  .hero-tags { font-size: 11px; gap: 10px; }
+  .hero-actions { gap: 14px; }
+  .hero-actions .button { padding: 10px 16px; }
+  .text-link { font-size: 13px; }
+  .section, .demos { padding-left: 16px; padding-right: 16px; }
+  .demo-tabs button { font-size: 12px; }
+  .results-table { font-size: 14px; }
+  .results-table th, .results-table td { padding: 11px 6px; }
+}
