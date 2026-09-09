@@ -1,4 +1,8 @@
 /* Video and numeric tracks share one visual surface. */
+.hero .project-abstract { max-width: 900px; margin: 36px auto 0; text-align: left; }
+.hero .project-abstract h2 { margin: 0 0 14px; text-align: center; font-size: 26px; letter-spacing: -.02em; }
+.hero .project-abstract p { max-width: none; margin: 0; font-size: 17px; line-height: 1.8; color: var(--ink); }
+.method > .hero-visual { margin: 32px auto 0; }
 .camera-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 10px 9px; color: var(--muted); font-size: 12px; }
 .camera-labels[hidden] { display: none; }
 .is-multiview .demo-screen video { aspect-ratio: 32/9; }
