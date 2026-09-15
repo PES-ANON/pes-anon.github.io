@@ -1,4 +1,8 @@
 /* Video and numeric tracks share one visual surface. */
+.demo-tabs { display: grid; grid-template-columns: repeat(4, max-content); width: max-content; max-width: 100%; }
+@media (max-width: 800px) {
+  .demo-tabs { width: 100%; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 .hero .project-abstract { max-width: 900px; margin: 36px auto 0; text-align: justify; }
 .hero .project-abstract h2 { margin: 0 0 14px; text-align: center; font-size: 26px; letter-spacing: -.02em; }
 .hero .project-abstract p { max-width: none; margin: 0; font-size: 17px; line-height: 1.8; color: var(--ink); }
