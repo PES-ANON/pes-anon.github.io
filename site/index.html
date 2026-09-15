@@ -12,10 +12,11 @@
   <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/noto-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="visual.css?v=academic">
-  <link rel="stylesheet" href="gallery.css?v=abstract-method">
+  <link rel="stylesheet" href="gallery.css?v=piper-five">
   <script src="demo-data.js?v=multiview" defer></script>
   <script src="synced-plot.js?v=live-curves" defer></script>
-  <script src="app.js?v=multiview" defer></script>
+  <script src="piper-data.js?v=piper-five" defer></script>
+  <script src="app.js?v=piper-five" defer></script>
 </head>
 <body>
   <a class="skip" href="#method">Skip to content</a>
@@ -78,12 +79,14 @@
         <button id="tab-repetition" role="tab" aria-selected="true" aria-controls="demo-panel" data-demo="repetition" tabindex="0">Repeated placement</button>
         <button id="tab-occlusion" role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="occlusion" tabindex="-1">Occlusion</button>
         <button id="tab-removal" role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="removal" tabindex="-1">AgiBot tasks</button>
+        <button id="tab-piper" role="tab" aria-selected="false" aria-controls="demo-panel" data-demo="piper" tabindex="-1">Other demos</button>
       </div>
       <div class="demo-stage" id="demo-panel" role="tabpanel" aria-labelledby="tab-repetition">
         <div class="demo-player">
           <div id="camera-labels" class="camera-labels" hidden><span>Head camera</span><span>Right wrist camera</span></div>
           <div class="demo-screen"><video id="demo-video" controls playsinline preload="metadata" poster="assets/demos/fruit-01.jpg" aria-label="Repeated placement result video"><source src="assets/demos/fruit-01.mp4" type="video/mp4"></video><div class="video-count">State count <strong id="demo-count">0</strong></div></div>
           <div id="demo-plot" class="synced-plot" aria-label="Synchronized event evidence, state progress, and accepted events"></div>
+          <video id="archived-plot" hidden muted playsinline preload="metadata" aria-label="Archived event evidence and state progress, synchronized to the robot video" style="width:100%;height:auto"></video>
         </div>
         <aside class="demo-aside">
           <span class="eyebrow" id="demo-kicker">REPEATED PLACEMENT</span>
