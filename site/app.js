@@ -64,9 +64,10 @@ function switchDemo(button) {
     label.textContent = item.label;
     const meta = document.createElement("small");
     const removals = item.events.filter(event => event.delta < 0).length;
+    const speed = item.presentationSpeed > 1 ? ` · ${item.presentationSpeed}x playback` : "";
     meta.textContent = removals
-      ? `${item.events.length - removals} add · ${removals} remove · ${Math.round(item.duration)} s`
-      : `${item.events.length} events · ${Math.round(item.duration)} s`;
+      ? `${item.events.length - removals} add · ${removals} remove · ${Math.round(item.duration)} s${speed}`
+      : `${item.events.length} events · ${Math.round(item.duration)} s${speed}`;
     copy.append(label, meta); choice.append(poster, copy);
     choice.addEventListener("click", () => loadCase(item));
     container.append(choice);
