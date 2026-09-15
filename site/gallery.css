@@ -8,7 +8,7 @@
 .hero .project-abstract p { max-width: none; margin: 0; font-size: 17px; line-height: 1.8; color: var(--ink); }
 .method > .hero-visual { margin: 32px auto 0; }
 .camera-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 10px 9px; color: var(--muted); font-size: 12px; }
-.camera-labels[hidden], #archived-plot[hidden], #demo-plot[hidden], .video-count[hidden] { display: none !important; }
+.camera-labels[hidden] { display: none !important; }
 .is-multiview .demo-screen video { aspect-ratio: 32/9; }
 .is-multiview .video-count { top: 8px; right: 8px; font-size: 10px; padding: 4px 8px; }
 .is-multiview .video-count strong { font-size: 18px; }

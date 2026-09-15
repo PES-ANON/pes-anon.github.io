@@ -12,21 +12,6 @@ const demoPlot = new window.SyncedPlot(document.querySelector("#demo-plot"), dem
   ({ count }) => { document.querySelector("#demo-count").textContent = count; });
 const tabs = [...document.querySelectorAll("[data-demo]")];
 const selectedCases = {};
-const archivedPlot = document.querySelector("#archived-plot");
-let archivedActive = false;
-function syncArchive() {
-  if (!archivedActive || archivedPlot.readyState < 1) return;
-  if (Math.abs(archivedPlot.currentTime - demo.currentTime) > 0.10) {
-    archivedPlot.currentTime = Math.min(demo.currentTime, archivedPlot.duration);
-  }
-  archivedPlot.playbackRate = demo.playbackRate;
-  if (demo.paused || demo.seeking || demo.ended || demo.readyState < 3) archivedPlot.pause();
-  else if (archivedPlot.paused) archivedPlot.play().catch(() => {});
-}
-for (const event of ["play", "pause", "seeking", "seeked", "timeupdate", "ratechange", "waiting", "playing", "ended"]) {
-  demo.addEventListener(event, syncArchive);
-}
-archivedPlot.addEventListener("loadedmetadata", syncArchive);
 let activeScenario = null;
 let activeCase = null;
 
@@ -41,19 +26,7 @@ function loadCase(item) {
   demo.querySelector("source").src = item.media;
   demo.setAttribute("aria-label", item.label + (item.multiview ? " synchronized head and right wrist video" : " result video"));
   demo.load();
-  archivedPlot.pause();
-  archivedActive = Boolean(item.curveMedia);
-  archivedPlot.hidden = !archivedActive;
-  document.querySelector("#demo-plot").hidden = archivedActive;
-  document.querySelector(".demo-screen .video-count").hidden = archivedActive;
-  if (archivedActive) {
-    archivedPlot.src = item.curveMedia;
-    archivedPlot.load();
-  } else {
-    archivedPlot.removeAttribute("src");
-    archivedPlot.load();
-    demoPlot.setData(item);
-  }
+  demoPlot.setData(item);
   document.querySelector("#demo-kicker").textContent = groups[item.group];
   document.querySelector("#demo-title").textContent = item.title;
   document.querySelector("#demo-description").textContent = item.description;
@@ -83,13 +56,7 @@ function switchDemo(button) {
     choice.className = "case-card";
     choice.dataset.case = item.id;
     choice.setAttribute("aria-pressed", "false");
-    const poster = document.createElement(item.curveMedia ? "video" : "img");
-    if (item.curveMedia) {
-      poster.muted = true; poster.playsInline = true; poster.preload = "metadata";
-      poster.setAttribute("aria-hidden", "true");
-      poster.tabIndex = -1;
-      poster.style.cssText = "width:96px;height:54px;object-fit:cover;flex-shrink:0";
-    }
+    const poster = document.createElement("img");
     poster.src = item.thumbnail; poster.alt = ""; poster.loading = "lazy";
     poster.width = 96; poster.height = 54;
     const copy = document.createElement("span");
@@ -100,7 +67,6 @@ function switchDemo(button) {
     meta.textContent = removals
       ? `${item.events.length - removals} add · ${removals} remove · ${Math.round(item.duration)} s`
       : `${item.events.length} events · ${Math.round(item.duration)} s`;
-    if (item.curveMedia) meta.textContent = `ADD / REMOVE · ${Math.round(item.duration)} s`;
     copy.append(label, meta); choice.append(poster, copy);
     choice.addEventListener("click", () => loadCase(item));
     container.append(choice);
